@@ -1,7 +1,5 @@
 # 			Jacquard & Hamming Algorithm 
 
-​																学号： 21215020 			姓名： 尹力量
-
 ## 1. Usage:
 
 ```shell
