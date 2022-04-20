@@ -10,8 +10,8 @@ cd .. && ./bin/Jaccard
 ```
 
 ## 2. 结果展示： 
+![data](https://user-images.githubusercontent.com/35591021/164266162-77d45266-6da8-41fe-a806-ab101d12e858.jpg)
 
-![](/Users/yinliliang/Desktop/blog/data.jpg)
 
 
 
