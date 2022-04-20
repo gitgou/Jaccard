@@ -11,4 +11,29 @@
 
 using ULL = unsigned long long;
 
+#define WRITE() \
+	uNum = 0; \
+	while(uNum < uMaxNum){ \
+		unsigned int uWriteNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE; \
+		oDataGen.GenerateData(pBuffle, uWriteNum); \
+		uNum += uWriteNum; \
+		oIO.Write(pBuffle, uWriteNum); \
+	}	\
+	oDataGen.Print(); 
+
+#define READ_CALCURATE() \
+	uNum = 0; \
+	while(uNum < uMaxNum){ \
+		unsigned int uReadNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE; \
+		uNum += uReadNum; \
+		oIO1.Read(pBuffle1, uReadNum); \
+		oIO2.Read(pBuffle2, uReadNum); \
+		for(int i = 0; i < uReadNum; ++i) \
+		{ \
+			oAth.Calcurate(pBuffle1[i], pBuffle2[i]); \
+		} \
+	} \
+	oAth.PrintResult(); \
+	cout << endl << endl; 	
+
 #endif

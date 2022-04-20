@@ -46,7 +46,7 @@ public:
 	IO(const string& path)
 	:_path(path)
 	{
-		cout << "path: " << _path << endl;
+		cout << "construct IO, path: " << _path << endl;
 		if(NULL == (_fp = fopen(_path.c_str(), "ab+"))){
 			cout << "get file descriptor fail. path: " << _path << endl;
 		}
@@ -61,6 +61,7 @@ public:
 			fclose(_fp);
 
 		_path = path;
+		cout << "reset IO, path: " << _path << endl;
 		if(NULL == (_fp = fopen(_path.c_str(), "ab+"))){
 			cout << "get file descriptor fail. path: " << _path << endl;
 			return false;

@@ -13,125 +13,53 @@ void WriteVector()
 	//首先生成非对称数据, vector1
 	DataGenerator oDataGen = DataGenerator(2);
 	IO oIO = IO("./my_data/non_uniform_vector1");
-	
-	while(uNum < uMaxNum){
-		unsigned int uWriteNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		oDataGen.GenerateData(pBuffle, uWriteNum);
-		uNum += uWriteNum;
-		oIO.Write(pBuffle, uWriteNum);
-	}	
-	oDataGen.Print();
+
+	WRITE()
+
 	//非对称vector2
-	uNum = 0;
 	oIO.Reset("./my_data/non_uniform_vector2");
-	while(uNum < uMaxNum){
-		unsigned int uWriteNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		oDataGen.GenerateData(pBuffle, uWriteNum);
-		uNum += uWriteNum;
-		oIO.Write(pBuffle, uWriteNum);
-	}	
-	oDataGen.Print();
-	
+	WRITE()
+
 	//对称vector1
-	uNum = 0;
 	oDataGen.Reset(5);
 	oIO.Reset("./my_data/uniform_vector1");
-	while(uNum < uMaxNum){
-		unsigned int uWriteNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		oDataGen.GenerateData(pBuffle, uWriteNum);
-		uNum += uWriteNum;
-		oIO.Write(pBuffle, uWriteNum);
-	}	
-	oDataGen.Print();
-	
-	//对称vector2
-	uNum = 0;
-	oIO.Reset("./my_data/uniform_vector2");
-	while(uNum < uMaxNum){
-		unsigned int uWriteNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		oDataGen.GenerateData(pBuffle, uWriteNum);
-		uNum += uWriteNum;
-		oIO.Write(pBuffle, uWriteNum);
-	}	
-	oDataGen.Print();
+	WRITE()
 
+	//对称vector2
+	oIO.Reset("./my_data/uniform_vector2");
+	WRITE()
 }
 
 int main()
 {
-	//WriteVector();
+	WriteVector();
 	
 	Algorithm oAth;
 	//先计算提供的数据: 非对称向量
-	cout << "official data non_uniform: " << endl;
 	IO oIO1 = IO("./data/non_uniform_vector1");
 	IO oIO2 = IO("./data/non_uniform_vector2");
 	ULL pBuffle1[ARRAY_SIZE] = {0}, pBuffle2[ARRAY_SIZE] = {0};	
+	cout << "official data non_uniform: " << endl;
 	unsigned int uNum = 0;
-	while(uNum < uMaxNum){
-		unsigned int uReadNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		uNum += uReadNum;
-		oIO1.Read(pBuffle1, uReadNum);
-		oIO2.Read(pBuffle2, uReadNum);
-		for(int i = 0; i < uReadNum; ++i)
-		{
-			oAth.Calcurate(pBuffle1[i], pBuffle2[i]);
-		}
-	}
-	oAth.PrintResult();
-	cout << endl << endl ;	
-	
+	READ_CALCURATE()
+
 	//先计算提供的数据: 对称向量
-	cout << "official data uniform: " << endl;
-	uNum = 0;
+	cout << "cal official data uniform: " << endl;
 	oIO1.Reset("./data/uniform_vector1");
 	oIO2.Reset("./data/uniform_vector2");
-	while(uNum < uMaxNum){
-		unsigned int uReadNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		uNum += uReadNum;
-		oIO1.Read(pBuffle1, uReadNum);
-		oIO2.Read(pBuffle2, uReadNum);
-		for(int i = 0; i < uReadNum; ++i)
-		{
-			oAth.Calcurate(pBuffle1[i], pBuffle2[i]);
-		}
-	}
-	oAth.PrintResult();
-	cout << endl << endl ;	
+	READ_CALCURATE()
 
 	//计算生成的数据: 非对称向量
-	cout << "generate data non_uniform: " << endl;
-	uNum = 0;
+	cout << "cal generated data non_uniform: " << endl;
 	oIO1.Reset("./my_data/non_uniform_vector1");
 	oIO2.Reset("./my_data/non_uniform_vector2");
-	while(uNum < uMaxNum){
-		unsigned int uReadNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		uNum += uReadNum;
-		oIO1.Read(pBuffle1, uReadNum);
-		oIO2.Read(pBuffle2, uReadNum);
-		for(int i = 0; i < uReadNum; ++i)
-		{
-			oAth.Calcurate(pBuffle1[i], pBuffle2[i]);
-		}
-	}
-	oAth.PrintResult();
-	cout << endl << endl ;	
+	READ_CALCURATE()
 	
 	//计算生成的数据: 对称向量
-	cout << "generate data uniform: " << endl;
-	uNum = 0;
+	cout << "cal generated data uniform: " << endl;
 	oIO1.Reset("./my_data/uniform_vector1");
 	oIO2.Reset("./my_data/uniform_vector2");
-	while(uNum < uMaxNum){
-		unsigned int uReadNum = (uMaxNum - uNum < ARRAY_SIZE) ? (uMaxNum - uNum) : ARRAY_SIZE;
-		uNum += uReadNum;
-		oIO1.Read(pBuffle1, uReadNum);
-		oIO2.Read(pBuffle2, uReadNum);
-		for(int i = 0; i < uReadNum; ++i)
-		{
-			oAth.Calcurate(pBuffle1[i], pBuffle2[i]);
-		}
-	}
-	oAth.PrintResult();
+	READ_CALCURATE()
+	
 	return 0;
 }

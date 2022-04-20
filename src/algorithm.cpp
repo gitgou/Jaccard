@@ -12,7 +12,7 @@ void Algorithm::Calcurate(ULL lsh, ULL rsh)
 	btTemp = btL | btR;
 	_iAndSet += btTemp.count(); //交集相加, bitset.count() 返回 1 的个数
 	btTemp.reset();
-	btTemp = btL ^ btR;
+	btTemp = btL ^ btR; //求 Hamming Distance 
 	_iHammingDistance += btTemp.count();
 }
 
